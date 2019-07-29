@@ -1,0 +1,17 @@
+.counter
+{
+    display: block;
+    width: 280px;
+    margin: 0 0 0 0;
+}
+.count
+{
+    font: Verdana;
+    font-size: 70px;
+    text-align: center;
+}
+a
+{
+    display: inline-block;
+    margin: 10px;
+}

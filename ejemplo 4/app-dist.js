@@ -8,39 +8,79 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Hola = function (_React$Component) {
-    _inherits(Hola, _React$Component);
+var Counter = function (_React$Component) {
+    _inherits(Counter, _React$Component);
 
-    function Hola(props) {
-        _classCallCheck(this, Hola);
+    function Counter(props) {
+        _classCallCheck(this, Counter);
 
-        var _this = _possibleConstructorReturn(this, (Hola.__proto__ || Object.getPrototypeOf(Hola)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
-        _this.despedirser = function () {
-            _this.setState({
-                nombre: _this.state.nombre === "Alvaro" ? "adios!" : "Alvaro"
+        _this.addCount = function (e) {
+            e.preventDefault();
+            //NO RECOMENDADO PARA ASIGNACIONES SOBRE ESTADO ANTERIOR
+            //this.setState({count:this.state.count + 1});
+            //RECOMENDADO
+            _this.setState(function (prevState) {
+                return {
+                    count: prevState.count + 1
+                };
             });
         };
 
+        _this.downCount = function (e) {
+            e.preventDefault();
+            _this.setState(function (prevState) {
+                if (prevState.count >= 1) {
+                    return {
+                        count: prevState.count - 1
+                    };
+                }
+            });
+        };
+
+        _this.resetCount = function (e) {
+            e.preventDefault();
+            _this.setState({ count: 0 });
+        };
+
         _this.state = {
-            nombre: "Alvaro"
+            count: 0
         };
         return _this;
     }
 
-    _createClass(Hola, [{
+    _createClass(Counter, [{
         key: "render",
         value: function render() {
             return React.createElement(
-                "h1",
-                { onClick: this.despedirser },
-                "Hola ",
-                this.state.nombre
+                "div",
+                { className: "counter" },
+                React.createElement(
+                    "div",
+                    { className: "count" },
+                    this.state.count
+                ),
+                React.createElement(
+                    "a",
+                    { href: "#", onClick: this.addCount },
+                    "Up"
+                ),
+                React.createElement(
+                    "a",
+                    { href: "#", onClick: this.downCount },
+                    "Down"
+                ),
+                React.createElement(
+                    "a",
+                    { href: "#", onClick: this.resetCount },
+                    "Reset"
+                )
             );
         }
     }]);
 
-    return Hola;
+    return Counter;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Hola, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
