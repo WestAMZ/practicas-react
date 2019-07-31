@@ -49,6 +49,7 @@ class Board extends React.Component
     {
         //calcule the number of mines
         var mines_number = Math.floor(Math.pow(this.state.n,2)*15/100)
+        
         for(var a = 0;a < this.state.mines.length;a++)
         {
             for(var i = 0;i < this.state.mines[i].length;a++)
